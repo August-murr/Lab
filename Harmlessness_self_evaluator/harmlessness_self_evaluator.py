@@ -4,7 +4,7 @@ import pandas as pd
 from datasets import load_dataset, Dataset
 from transformers import AutoModelForCausalLM, AutoTokenizer, GenerationConfig, pipeline, BitsAndBytesConfig
 from peft import PeftModel
-from langchain import PromptTemplate
+from langchain.prompts import PromptTemplate
 
 def add_tags(example):
     example["init_prompt"] = f"[INST] {example['init_prompt']} [/INST]"
