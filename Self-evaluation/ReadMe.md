@@ -1,4 +1,4 @@
-This directory contains two notebooks: `self-evaluator_prompt_tuning` and `mistral_harmlessness_self_evaluation`. Both notebooks are developed using the (Anthropic's Red Teaming Prompt Dataset)[https://huggingface.co/datasets/Anthropic/hh-rlhf]
+This directory contains two notebooks: `self-evaluator_prompt_tuning` and `mistral_harmlessness_self_evaluation`. Both notebooks are developed using the [Anthropic's Red Teaming Prompt Dataset](https://huggingface.co/datasets/Anthropic/hh-rlhf)
 
 ## self-evaluator_prompt_tuning
 
