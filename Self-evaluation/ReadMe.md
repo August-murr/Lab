@@ -1,17 +1,11 @@
-# Mistral Self-Evaluator Prompt
+This directory contains two notebooks: `self-evaluator_prompt_tuning` and `mistral_harmlessness_self_evaluation`. Both notebooks are developed using the [Anthropic's Red Teaming Prompt Dataset](https://huggingface.co/datasets/Anthropic/hh-rlhf).
 
-This repository contains a notebook where we have developed a self-evaluator prompt for Mistral.
-The goal of this prompt is to enable Mistral to evaluate and criticize its own responses when prompted to give harmful, unethical, or illegal advice.
+## self-evaluator_prompt_tuning
 
-## Dataset
-We utilized the [Anthopics Red Teaming Prompt Dataset](https://huggingface.co/datasets/Anthropic/hh-rlhf) to develop this self-evaluator prompt. We manually labeled a subset of 50 Red Teaming prompts to create an evaluation dataset, which serves as a benchmark to compare the accuracy of different prompts.
+In this notebook, a test framework has been crafted to assess the accuracy and agreement of the Mistral 7b model with various prompts, including one-shot and few-shot prompts. These prompts instruct the model to evaluate its own responses and judge them for harm, unethical content, or danger. The framework measures prompt accuracy using a labeled dataset of 50 red team prompt response judgments. It also calculates prompt speed and efficiency to identify the most effective prompt. The result of the testing indicates an 82% agreement for a one-shot prompt.
 
-## Functionality
-In addition to the evaluation dataset, the function compares the accuracy, speed, and inference time of different prompts. This self-evaluation and classification of responses are crucial, considering that Mistral rejects approximately 25% of the Red Teaming prompts. Filtering out non-harmful prompts and responses is imperative to prevent the model from becoming less helpful in the self-alignment process.
+## mistral_harmlessness_self_evaluation
 
-## Versatility
-While this prompt was primarily tuned for safety and toxicity evaluation, it is versatile enough to test a wide range of creative ideas. These include self-rewarding, self-evaluation for reasoning and logic, hallucination, coding, and various other tasks.
+This notebook utilizes the previously tuned one-shot prompt from the `self-evaluator_prompt_tuning` notebook to self-evaluate the base Mistral 7b model on the Anthropic's dataset. The obtained results will serve as a baseline for comparison with fine-tuned models, which will undergo additional fine-tuning for alignment and safety.
 
-## Usage
-The code and prompt provided in this notebook will be used to align Mistral for safety. 
-While originally intended for personal use, feel free to explore, utilize, and contribute to this repository.
+In addition to self-evaluation for harmlessness, the (llm_judge)[https://github.com/lm-sys/FastChat/tree/main/fastchat/llm_judge] module from FastChat is employed to evaluate the base model and subsequently fine-tuned models on the MT-Bench dataset, as explained in [this paper](https://arxiv.org/abs/2306.05685). This evaluation aims to determine if alignment efforts result in a reduction of model helpfulness, commonly referred to as alignment tax.
