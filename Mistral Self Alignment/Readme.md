@@ -1,31 +1,33 @@
 # Mistral Self-Alignment
 
-The **Mistral Self-Alignment** project explores a self-improvement concept utilizing red teaming to evaluate and enhance model responses for harmlessness and safety. The methodology employed here can be extended to various self-improvement concepts tailored for different purposes, including the utilization of tools across diverse environments.
+The goal of this project was to experiment with a self-improvement concept, utilizing red teaming to evaluate and enhance the model's responses for harmlessness and safety. This concept has potential applications beyond self-improvement, extending to various environments and tools.
 
-## Overview
+## Prompt Evaluation and Data Generation
 
-Initially, the project involved:
+- For initial evaluation, different prompts were compared in terms of accuracy and speed using a manually labeled dataset. Check out the [self-evaluation prompt tuning notebook](https://github.com/August-murr/Lab/blob/main/Mistral%20Self%20Alignment/Notebooks/%20self-evaluator_prompt_tuning.ipynb).
+- Synthetic data generation was performed using the [preference data generation notebook](https://github.com/August-murr/Lab/blob/main/Mistral%20Self%20Alignment/Notebooks/preference-dataset-generation.ipynb), available [here](https://huggingface.co/datasets/August4293/Preference-Dataset).
 
-- Comparison of accuracy and speed of different prompts using a manually labeled dataset with the [self-evaluation prompt tuning notebook](https://github.com/August-murr/Lab/blob/main/Mistral%20Self%20Alignment/Notebooks/%20self-evaluator_prompt_tuning.ipynb).
-- Generation of synthetic data through the [preference data generation notebook](https://github.com/August-murr/Lab/blob/main/Mistral%20Self%20Alignment/Notebooks/preference-dataset-generation.ipynb) ([preference dataset link](https://huggingface.co/datasets/August4293/Preference-Dataset)).
-- Red team prompt dataset utilization to generate responses, subsequently labeled with a self-evaluation template to determine harmfulness. Non-harmful responses were filtered to maintain helpfulness, and a preference dataset was created.
-- Training of two adapters using supervised fine-tuning and direct preference optimization training methods, as depicted in the following notebooks:
+## Model Training
+
+- Responses generated from the red team prompt dataset were labeled using a self-evaluation template to filter out harmful ones. The remaining non-harmful responses were used to create a preference dataset.
+- Two adapters were trained using supervised fine-tuning and direct preference optimization methods. Explore the training process in the following notebooks:
   - [SFT training notebook](https://github.com/August-murr/Lab/blob/main/Mistral%20Self%20Alignment/Notebooks/SFT_mistral_on_preference_data.ipynb)
-  - [DPO training notebook](https://github.com/August-murr/Lab/blob/main/Mistral%20Self%20Alignment/Notebooks/DPO_mistral_on_preference_dataset.ipynb).
+  - [DPO training notebook](https://github.com/August-murr/Lab/blob/main/Mistral%20Self%20Alignment/Notebooks/DPO_mistral_on_preference_dataset.ipynb)
+
+## Model Availability
+
+The trained models are available on Hugging Face:
+- [SFT model](https://huggingface.co/August4293/mistral_self_alignment_SFT)
+- [DPO model](https://huggingface.co/August4293/mistral_self_alignment_DPO)
 
 ## Evaluation
 
-Evaluation involved the creation of a new red team prompt dataset, where Mistral 7b failed at every response, to assess the newly fine-tuned models. Results indicated a rejection rate of approximately 98% for red teaming prompts, with the DPO model showing slightly better performance. Refer to the following notebooks for detailed analysis:
+A new red team prompt dataset was created to evaluate the fine-tuned models' performance. The results indicated that the models rejected the red teaming prompts at a rate of approximately 98%, with the DPO model slightly outperforming the SFT model. Explore the evaluation notebooks:
 - [Red teaming SFT adapter](https://github.com/August-murr/Lab/blob/main/Mistral%20Self%20Alignment/Notebooks/red-teaming-sft-model-on-test-data.ipynb)
-- [Red teaming DPO adapter](https://github.com/August-murr/Lab/blob/main/Mistral%20Self%20Alignment/Notebooks/red-teaming-dpo-model-on-test-data.ipynb).
+- [Red teaming DPO adapter](https://github.com/August-murr/Lab/blob/main/Mistral%20Self%20Alignment/Notebooks/red-teaming-dpo-model-on-test-data.ipynb)
 
-## Challenges and Further Considerations
+## Further Considerations
 
-Despite the success rate of the fine-tuned models, there was a noticeable reduction in helpfulness, rendering the models overly cautious. They refrained from answering questions even with a slight chance of a harmful response. A notebook comparing the base Mistral model to the fine-tuned model is available for reference:
-- [Mistral vs Self-Aligned](https://github.com/August-murr/Lab/blob/main/Mistral%20Self%20Alignment/Notebooks/mistral-vs-self-aligned.ipynb).
+However, the success of the fine-tuned models came at a cost of reduced helpfulness, making them overly cautious. Even a slight potential for harm led to refusal to respond. This reduction in helpfulness could be addressed by diversifying the dataset to include helpful answers to questions.
 
-This reduction in helpfulness could potentially be mitigated by curating a more diverse dataset that incorporates helpful answers to questions.
-
-## Project Availability
-
-While initially a personal project aimed at implementing a basic form of self-improvement, all the code and notebooks are available for public use and exploration. Feel free to utilize them for your own purposes.
+While this project was undertaken for personal self-improvement purposes, all the code and notebooks are available for anyone interested in exploring or utilizing them.
