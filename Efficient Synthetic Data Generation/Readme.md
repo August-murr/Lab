@@ -53,19 +53,3 @@ The instance script incorporates three key features to enhance efficiency: threa
 3. **Execute the Script:**
    - Run the instance script on Kaggle notebooks.
    - Monitor the progress and results in MongoDB.
-
-## Contributing
-
-Contributions are welcome! If you have suggestions for improvements or encounter any issues, feel free to open an issue or submit a pull request.
-
-## License
-
-This project is licensed under the MIT License. See the LICENSE file for details.
-
-## Acknowledgments
-
-Special thanks to the contributors and the open-source community for their invaluable support and resources.
-
----
-
-By leveraging the power of Kaggle's free GPU resources and MongoDB's flexible database management, this script offers an efficient solution for large-scale synthetic data generation. Whether you're working solo or collaborating with a team, this setup ensures maximum resource utilization and seamless data handling.
