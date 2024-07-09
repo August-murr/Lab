@@ -44,11 +44,13 @@ def calculate_correct_answers(collection_name):
     else:
         correct_percentage = 0
         
-    return total_answers,correct_answers,correct_percentage
     # Print the results
     print(f"Total answers: {total_answers}")
     print(f"Correct answers: {correct_answers}")
     print(f"Correct answer percentage: {correct_percentage:.2f}%")
+    
+    return total_answers,correct_answers,correct_percentage
+
 
 
 run_name = "your_run_name"
