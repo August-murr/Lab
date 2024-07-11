@@ -1,6 +1,6 @@
 # Example Scripts for ScalableGen
 
-For the full explanation, visit the [article](link_to_article).
+For the full explanation, visit the [article]([link_to_article](https://medium.com/@moh.murr/self-improving-llms-enhancing-arithmetic-skills-through-self-play-and-reinforcement-learning-080e9f47bd79)).
 
 These example scripts demonstrate how to use [ScalableGen](https://github.com/August-murr/ScalableGen) for various tasks such as benchmarking a base model (Mistral) on the GSM8K benchmark, tuning models with adapters, generating responses, creating preference datasets, and training low-rank adapters.
 
